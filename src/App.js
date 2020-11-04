@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useAuthContext } from "./AuthProvider";
 
 function App() {
+  const { authed, login, logout } = useAuthContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>{authed ? "You are logged in" : "You are logged out"}</h1>
+      {authed ? (
+        <button onClick={logout}>Log out</button>
+      ) : (
+        <button onClick={login}>Log in</button>
+      )}
+    </>
   );
 }
 
